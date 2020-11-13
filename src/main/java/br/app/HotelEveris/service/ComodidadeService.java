@@ -1,0 +1,68 @@
+package br.app.HotelEveris.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.app.HotelEveris.model.Comodidade;
+import br.app.HotelEveris.repository.ComodidadeRepository;
+import br.app.HotelEveris.request.ComodidadeRequest;
+import br.app.HotelEveris.response.BaseResponse;
+import br.app.HotelEveris.response.ComodidadeResponse;
+
+@Service
+
+public class ComodidadeService {
+
+	@Autowired
+
+	private ComodidadeRepository repository;
+
+	public BaseResponse inserir(ComodidadeRequest comodidadeRequest) {
+
+		BaseResponse response = new BaseResponse();
+		Comodidade comodidade = new Comodidade();
+		response.statusCode = 400;
+		
+		
+		if (comodidadeRequest.getNome().isEmpty()) {
+			response.message = "A comodidade não pode ser vazia";
+			return response;
+		}
+
+
+		comodidade.setNome(comodidadeRequest.getNome());
+
+		repository.save(comodidade);
+
+		response.message = "Comodidade feito";
+		response.statusCode = 201;
+
+		return response;
+
+	}
+
+	public ComodidadeResponse obter(Long id) {
+
+		Optional<Comodidade> comodidade = repository.findById(id);
+
+		ComodidadeResponse response = new ComodidadeResponse();
+		
+		if (comodidade.get().getId() == 0) {
+			response.statusCode = 400;
+			response.message = "Id não encontrado.";
+			return response;
+		}
+
+
+		response.setId(comodidade.get().getId());
+		response.setNome(comodidade.get().getNome());
+
+		response.statusCode = 200;
+		response.message = "Tipo de quarto obtido com sucesso.";
+		return response;
+
+	}
+
+}
