@@ -71,6 +71,9 @@ public class ClienteService {
 		response.setId(cliente.get().getId());
 		response.setNome(cliente.get().getNome());
 		response.setCpf(cliente.get().getCpf());
+		
+		
+		
 		response.statusCode = 200;
 		response.message = "Conta obtida com sucesso.";
 		return response;

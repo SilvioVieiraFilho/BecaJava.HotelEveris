@@ -10,30 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.app.HotelEveris.request.OcupacaoRequest;
 import br.app.HotelEveris.response.BaseResponse;
+import br.app.HotelEveris.response.OcupacaoListResponse;
 import br.app.HotelEveris.service.OcupacaoService;
+
 @RestController
 @RequestMapping("/ocupacoes")
 public class OcupacaoController extends BaseController {
 
-	
-	@Autowired 
+	@Autowired
 	OcupacaoService _service;
-	
-	
-	@GetMapping
-	public ResponseEntity <BaseResponse> listar() {
-		try {
-			BaseResponse response = _service.listar();
-			return ResponseEntity.status(response.statusCode).body(response);
-		} catch (Exception e) {
-			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-		}
-	}
-	
-	
-	
-	
-	// POST - CRIAR UM TIPO DE QUARTO
+
 	@PostMapping
 	public ResponseEntity<BaseResponse> inserir(@RequestBody OcupacaoRequest request) {
 		try {
@@ -44,6 +30,16 @@ public class OcupacaoController extends BaseController {
 		}
 	}
 
+	@GetMapping
+	public ResponseEntity<BaseResponse> listar() {
+		try {
+
+			OcupacaoListResponse response = _service.listar();
+
+			return ResponseEntity.status(response.statusCode).body(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+		}
+	}
 
 }
-

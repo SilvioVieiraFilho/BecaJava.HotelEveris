@@ -13,40 +13,35 @@ import br.app.HotelEveris.request.ClienteRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.service.ClienteService;
 
-
 @RestController
 @RequestMapping("/clientes")
 
-
 public class ClienteController extends BaseController {
 
-	
+	@Autowired
+	ClienteService service;
 
+	// POST - CRIAR UM CLIENTE
+	@PostMapping
+	public ResponseEntity<BaseResponse> criar(@RequestBody ClienteRequest request) {
+		try {
+			BaseResponse response = service.inserir(request);
+			return ResponseEntity.status(response.statusCode).body(response);
+		} catch (Exception e) {
 
-		@Autowired
-		ClienteService service;
-
-		// POST - CRIAR UM CLIENTE
-		@PostMapping
-		public ResponseEntity<BaseResponse> criar(@RequestBody ClienteRequest request) {
-			try {
-				BaseResponse response = service.inserir(request);
-				return ResponseEntity.status(response.statusCode).body(response);
-			} catch (Exception e) {
-				return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-			}
+			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
-
-		// GET - OBTER POR ID
-		@GetMapping(path = "/{id}")
-		public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
-			try {
-				BaseResponse response = service.obter(id);
-				return ResponseEntity.status(response.statusCode).body(response);
-			} catch (Exception e) {
-				return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-			}
-		}
-
 	}
 
+	// GET - OBTER POR ID
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
+		try {
+			BaseResponse response = service.obter(id);
+			return ResponseEntity.status(response.statusCode).body(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+		}
+	}
+
+}

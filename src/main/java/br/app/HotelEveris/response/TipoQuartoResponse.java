@@ -8,6 +8,11 @@ public class TipoQuartoResponse extends BaseResponse {
 	
 	
 	
+	
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}

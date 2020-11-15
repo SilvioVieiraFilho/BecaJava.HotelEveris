@@ -13,30 +13,32 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Ocupacao {
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private Long id;
-	
-    @Temporal(TemporalType.TIMESTAMP)java.util.Date dateAndTime2;
+
+	@Temporal(TemporalType.DATE)
 	private Date data;
 
 	private String situacao;
-	
+
 	private int qtdiarias;
-	
 
 	@ManyToOne
 	@JoinColumn(name = "Idquarto")
 	private Quarto quarto;
 
-	
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "Idcliente")
 	private Cliente cliente;
+	
+	public Ocupacao(){
+		
+	}
+	
 
 	public int getQtdiarias() {
 		return qtdiarias;
@@ -85,5 +87,7 @@ public class Ocupacao {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
+	
+
 
 }

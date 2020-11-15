@@ -22,17 +22,14 @@ public class ComodidadeService {
 	public BaseResponse inserir(ComodidadeRequest comodidadeRequest) {
 
 		BaseResponse response = new BaseResponse();
-		Comodidade comodidade = new Comodidade();
+		Comodidade comodidade = new Comodidade(comodidadeRequest.getNome());
+
 		response.statusCode = 400;
-		
-		
+
 		if (comodidadeRequest.getNome().isEmpty()) {
 			response.message = "A comodidade não pode ser vazia";
 			return response;
 		}
-
-
-		comodidade.setNome(comodidadeRequest.getNome());
 
 		repository.save(comodidade);
 
@@ -48,13 +45,12 @@ public class ComodidadeService {
 		Optional<Comodidade> comodidade = repository.findById(id);
 
 		ComodidadeResponse response = new ComodidadeResponse();
-		
+
 		if (comodidade.get().getId() == 0) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;
 		}
-
 
 		response.setId(comodidade.get().getId());
 		response.setNome(comodidade.get().getNome());

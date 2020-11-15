@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.app.HotelEveris.model.Comodidade;
 
-public class ComodidadeListResponse {
+public class ComodidadeListResponse  extends BaseResponse {
 
 	private List<Comodidade> comodidade;
 

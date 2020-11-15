@@ -15,16 +15,14 @@ import br.app.HotelEveris.response.TipoQuartoResponse;
 
 @Service
 public class TipoQuartoService {
-   
-	
+
 	@Autowired
 	private TipoQuartoRepository repository;
 
 	public BaseResponse inserir(TipoQuartoRequest tipodequartoreq) {
 
 		BaseResponse response = new BaseResponse();
-		TipoQuarto tipoquarto = new TipoQuarto();
-
+		
 		if (tipodequartoreq.getDescricao() == "") {
 
 			response.message = "Descricao vazia tente novamente  ";
@@ -45,9 +43,9 @@ public class TipoQuartoService {
 			response.statusCode = 400;
 
 		}
+		
+		TipoQuarto tipoquarto = new TipoQuarto(tipodequartoreq.getDescricao(), tipodequartoreq.getValor());
 
-		tipoquarto.setDescricao(tipodequartoreq.getDescricao());
-		tipoquarto.setValor(tipodequartoreq.getValor());
 
 		repository.save(tipoquarto);
 
@@ -69,6 +67,8 @@ public class TipoQuartoService {
 			response.message = "Id não encontrado tente novamente.";
 			return response;
 		}
+		
+		
 
 		response.setDescricao(tipoquarto.get().getDescricao());
 		response.setValor(tipoquarto.get().getValor());

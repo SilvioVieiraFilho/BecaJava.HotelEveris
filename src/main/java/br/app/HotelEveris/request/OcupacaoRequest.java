@@ -7,48 +7,38 @@ import br.app.HotelEveris.model.Quarto;
 
 public class OcupacaoRequest {
 
-	private Cliente idcliente;
-	private Quarto idquarto;
+	private Long idquarto;
 	private Date data;
 	private int qtdiarias;
-	private long idclientee;
-	private long idquartooo;
+	private Long idcliente;
+	private String situacao;
+	
+	
+	
+	
 	
 
-	
-	
-	
-	
-
-	public long getIdclientee() {
-		return idclientee;
+	public String getSituacao() {
+		return situacao;
 	}
 
-	public void setIdclientee(long idclientee) {
-		this.idclientee = idclientee;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 
-	public long getIdquartooo() {
-		return idquartooo;
-	}
-
-	public void setIdquartooo(long idquartooo) {
-		this.idquartooo = idquartooo;
-	}
-
-	public Cliente getIdcliente() {
+	public Long getIdcliente() {
 		return idcliente;
 	}
 
-	public void setIdcliente(Cliente idcliente) {
+	public void setIdcliente(Long idcliente) {
 		this.idcliente = idcliente;
 	}
 
-	public Quarto getIdquarto() {
+	public Long getIdquarto() {
 		return idquarto;
 	}
 
-	public void setIdquarto(Quarto idquarto) {
+	public void setIdquarto(Long idquarto) {
 		this.idquarto = idquarto;
 	}
 

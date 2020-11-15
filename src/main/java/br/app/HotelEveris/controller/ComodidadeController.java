@@ -20,7 +20,7 @@ public class ComodidadeController extends BaseController {
 	@Autowired 
 	ComodidadeService _service;
 			@PostMapping
-		public ResponseEntity<BaseResponse> criar(@RequestBody ComodidadeRequest request) {
+		public ResponseEntity<BaseResponse> inserir(@RequestBody ComodidadeRequest request) {
 			try {
 				BaseResponse response = _service.inserir(request);
 				return ResponseEntity.status(response.statusCode).body(response);

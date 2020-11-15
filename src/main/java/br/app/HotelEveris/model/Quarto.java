@@ -1,16 +1,14 @@
 package br.app.HotelEveris.model;
 
-import java.util.Set;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-
+import javax.persistence.Transient;
 
 @Entity
 public class Quarto {
@@ -18,19 +16,46 @@ public class Quarto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int andar;
-	private String nquarto;
+	private int nquarto;
 	private String situacao;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "Idtipoquarto")
 	private TipoQuarto tipoquarto;
-	
-	
-	
-    @ManyToMany(mappedBy = "como")
-	Set<Comodidade> comodidade;
 
+	public Quarto(Long id) {
+		super();
+		this.id = id;
+	}
 
+	public Quarto() {
+
+	}
+
+	@Transient
+	Optional<Quarto> lista;
+
+	public Quarto(Optional<Quarto> lista) {
+		
+		this.lista = lista;
+
+	}
+
+	public Quarto(int andar, int nquarto, String situacao, TipoQuarto tipoquarto) {
+
+		this.andar = andar;
+		this.nquarto = nquarto;
+		this.situacao = situacao;
+		this.tipoquarto = tipoquarto;
+	}
+
+	public int getNquarto() {
+		return nquarto;
+	}
+
+	public void setNquarto(int nquarto) {
+		this.nquarto = nquarto;
+	}
 
 	public Long getId() {
 		return id;
@@ -48,14 +73,6 @@ public class Quarto {
 		this.tipoquarto = tipoquarto;
 	}
 
-	public Set<Comodidade> getComodidade() {
-		return comodidade;
-	}
-
-	public void setComodidade(Set<Comodidade> comodidade) {
-		this.comodidade = comodidade;
-	}
-
 	public int getAndar() {
 		return andar;
 	}
@@ -64,20 +81,20 @@ public class Quarto {
 		this.andar = andar;
 	}
 
-	public String getNquarto() {
-		return nquarto;
-	}
-
-	public void setNquarto(String nquarto) {
-		this.nquarto = nquarto;
-	}
-
 	public String getSituacao() {
 		return situacao;
 	}
 
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
+	}
+
+	public Optional<Quarto> getLista() {
+		return lista;
+	}
+
+	public void setLista(Optional<Quarto> lista) {
+		this.lista = lista;
 	}
 
 }

@@ -1,25 +1,31 @@
 package br.app.HotelEveris.request;
 
-import java.util.Set;
+import java.util.List;
 
 import br.app.HotelEveris.model.Comodidade;
+import br.app.HotelEveris.model.Quarto;
 import br.app.HotelEveris.model.TipoQuarto;
 
 public class QuartoRequest {
 
 	private int andar;
-	private String nquarto;
+	private int nquarto;
 	private String situacao;
 	private TipoQuarto tipoquarto;
-//	private Set<Comodidade> comododidade;
-//
-//	public Set<Comodidade> getComododidade() {
-//		return comododidade;
-//	}
-//
-//	public void setComododidade(Set<Comodidade> comododidade) {
-//		this.comododidade = comododidade;
-//	}
+
+	private List<ComodidadeRequest> Comodidade;
+
+	public void setComodidade(List<ComodidadeRequest> comodidade) {
+		Comodidade = comodidade;
+	}
+
+	public void setNquarto(int nquarto) {
+		this.nquarto = nquarto;
+	}
+
+	public List<ComodidadeRequest> getComodidade() {
+		return Comodidade;
+	}
 
 	public TipoQuarto getTipoquarto() {
 		return tipoquarto;
@@ -37,12 +43,8 @@ public class QuartoRequest {
 		this.andar = andar;
 	}
 
-	public String getNquarto() {
+	public int getNquarto() {
 		return nquarto;
-	}
-
-	public void setNquarto(String nquarto) {
-		this.nquarto = nquarto;
 	}
 
 	public String getSituacao() {

@@ -19,30 +19,36 @@ public class OcupacaoService {
 	@Autowired
 	private OcupacaoRepository repository;
 
-	public BaseResponse inserir(OcupacaoRequest ocupacaor) {
+	public BaseResponse inserir(OcupacaoRequest request) {
 
 		BaseResponse response = new BaseResponse();
 
 		Ocupacao ocupacao = new Ocupacao();
 
-		Quarto quarto = new Quarto();
-		Cliente cliente = new Cliente();
+		Ocupacao ocupa = new Ocupacao();
 
-		ocupacao.setQtdiarias(ocupacaor.getQtdiarias());
-		ocupacao.setData(ocupacao.getData());
-		ocupacao.setSituacao("N");
+		ocupa.setData(request.getData());
+		ocupa.setQtdiarias(request.getQtdiarias());
+		ocupa.setSituacao(request.getSituacao());
 
-		quarto.setId(ocupacaor.getIdquartooo());
-		ocupacao.setQuarto(quarto);
+		if (ocupa.getSituacao().isEmpty()) {
+			ocupacao.setSituacao("N");
+		}
 
-		cliente.setId(ocupacaor.getIdclientee());
-		ocupacao.setCliente(cliente);
+		Cliente obj = new Cliente();
+		obj.setId(request.getIdcliente());
+		ocupa.setCliente(obj);
+
+		Quarto obj2 = new Quarto();
+		obj2.setId(request.getIdquarto());
+		ocupa.setQuarto(obj2);
 
 		repository.save(ocupacao);
 
 		response.message = "Ocupacao inserida com sucesso";
 
 		response.statusCode = 201;
+
 		return response;
 
 	}
@@ -52,6 +58,8 @@ public class OcupacaoService {
 		List<Ocupacao> lista = repository.findAll();
 
 		OcupacaoListResponse response = new OcupacaoListResponse();
+
+		response.setOcupacao(lista);
 
 		response.statusCode = 200;
 		response.message = "Serviços obtidos com sucesso.";
