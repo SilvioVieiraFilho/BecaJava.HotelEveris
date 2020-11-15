@@ -82,10 +82,13 @@ public class TipoQuartoService {
 
 	public TipoQuartoListResponse listar() {
 
-		List<TipoQuarto> lista = repository.findAll();
+		List<TipoQuarto> listando = repository.findAll();
+		
+
 
 		TipoQuartoListResponse response = new TipoQuartoListResponse();
-
+  
+		response.setTipoquarto(listando);
 		response.statusCode = 200;
 		response.message = "Serviços obtidos com sucesso.";
 
