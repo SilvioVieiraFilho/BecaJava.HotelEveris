@@ -35,10 +35,10 @@ public class QuartoController extends BaseController {
 		}
 	}
 
-	@GetMapping(path = "/{id}")
-	public ResponseEntity<BaseResponse> obter(@PathVariable Long idtipoquarto) {
+	@GetMapping(path = "/{id}/obtermoreonce")
+	public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
 		try {
-			BaseResponse response = service.obter(idtipoquarto);
+			BaseResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);

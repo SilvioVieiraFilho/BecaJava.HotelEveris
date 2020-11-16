@@ -17,13 +17,14 @@ public class ClienteService {
 	@Autowired
 	ClienteRepository repository;
 
-	// CRIAR UM CLIENTE
+
 	public BaseResponse inserir(ClienteRequest request) {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
 		if (request.getNome().isEmpty()) {
 			response.message = "insira um nome  e tente novamente";
+			response.statusCode = 400;
 			return response;
 		}
 		if (request.getCpf().isEmpty()) {
@@ -48,32 +49,27 @@ public class ClienteService {
 		return response;
 	}
 
-	// OBTER UM CLIENTE POR POR ID
 	public ClienteResponse obter(Long id) {
 		Optional<Cliente> cliente = repository.findById(id);
 
 		ClienteResponse response = new ClienteResponse();
 
-		if (cliente.get().getId() == 0 ) {
+		if (cliente.get().getId() == 0) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;
 		}
-		
+
 		if (!cliente.isPresent()) {
 			response.statusCode = 400;
 			response.message = "Id inexistente tente novamente";
 			return response;
 		}
-		
-		
 
 		response.setId(cliente.get().getId());
 		response.setNome(cliente.get().getNome());
 		response.setCpf(cliente.get().getCpf());
-		
-		
-		
+
 		response.statusCode = 200;
 		response.message = "Conta obtida com sucesso.";
 		return response;

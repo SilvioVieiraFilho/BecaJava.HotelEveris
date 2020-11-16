@@ -1,8 +1,7 @@
 package br.app.HotelEveris.request;
 
 public class SituacaoQuartoRequest {
-	
-	
+
 	private String situacao;
 
 	public String getSituacao() {
@@ -12,8 +11,5 @@ public class SituacaoQuartoRequest {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	
-	
-	
 
 }

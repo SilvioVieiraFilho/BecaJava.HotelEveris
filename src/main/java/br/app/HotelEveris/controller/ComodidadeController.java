@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.app.HotelEveris.request.ComodidadeRequest;
+import br.app.HotelEveris.request.ComidadeRequestDoInserir;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.service.ComodidadeService;
 
@@ -20,7 +20,7 @@ public class ComodidadeController extends BaseController {
 	@Autowired 
 	ComodidadeService _service;
 			@PostMapping
-		public ResponseEntity<BaseResponse> inserir(@RequestBody ComodidadeRequest request) {
+		public ResponseEntity<BaseResponse> inserir(@RequestBody ComidadeRequestDoInserir request) {
 			try {
 				BaseResponse response = _service.inserir(request);
 				return ResponseEntity.status(response.statusCode).body(response);

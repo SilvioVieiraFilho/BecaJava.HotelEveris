@@ -16,6 +16,8 @@ public class QuartoResponse extends BaseResponse {
 	private TipoQuarto tipoquarto;
 	Optional<Quarto> lista;
 	Optional<Quarto> listaa;
+	private Quarto quarto;
+    private long  quartoid;
 	
 	
 	
@@ -45,6 +47,9 @@ public QuartoResponse() {
 		this.listaa = lista;
 	}
 	
+	
+	
+	
 	public QuartoResponse( Long id ,int andar, int nquarto, String situacao, TipoQuarto tipoquarto) {
 		super();
 	
@@ -54,6 +59,17 @@ public QuartoResponse() {
 		this.tipoquarto = tipoquarto;
        this.id = id;
 	}
+	
+	public QuartoResponse( Long id ,int andar, int nquarto, String situacao) {
+		super();
+	
+		this.andar = andar;
+		this.nquarto = nquarto;
+		this.situacao = situacao;
+       this.id = id;
+	}
+	
+	
 
 	public void setId(Long id) {
 		this.id = id;
@@ -90,5 +106,42 @@ public QuartoResponse() {
 	public void setTipoquarto(TipoQuarto tipoquarto) {
 		this.tipoquarto = tipoquarto;
 	}
+
+
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
+	}
+
+
+	public Optional<Quarto> getListaa() {
+		return listaa;
+	}
+
+
+	public void setListaa(Optional<Quarto> listaa) {
+		this.listaa = listaa;
+	}
+
+
+	public long getQuartoid() {
+		return quartoid;
+	}
+
+
+	public void setQuartoid(long quartoid) {
+		this.quartoid = quartoid;
+	}
+
+
+	public Optional<Quarto> getLista() {
+		return lista;
+	}
+	
+	
 
 }

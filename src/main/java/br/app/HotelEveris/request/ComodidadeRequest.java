@@ -1,15 +1,20 @@
 package br.app.HotelEveris.request;
 
 public class ComodidadeRequest {
-    
+
 	private Long id;
-	
-	
+
 	private String nome;
 
-	
-	
-	
+	public ComodidadeRequest() {
+
+	}
+
+	public ComodidadeRequest(String nome) {
+
+		this.nome = nome;
+	}
+
 	public Long getId() {
 		return id;
 	}

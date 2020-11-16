@@ -14,17 +14,9 @@ import br.app.HotelEveris.model.Quarto;
 public interface QuartoRepository extends JpaRepository<Quarto, Long> {
 
 	@Query(value = "EXEC sp_consulte :tipoquartoid", nativeQuery = true)
-	
+
 	Optional<Quarto> findBuscarQuartos(@Param("tipoquartoid") Long tipoquartoid);
 
-	
-	//@Query(value = "EXEC SP_obterOperacoesPorConta :idConta", nativeQuery = true)
-
-    //List<Operacao> findOperacoesPorConta(@Param("idConta") Long idConta);
-	
-	
 	Optional<Quarto> findBynquarto(int nquarto);
-	
-	
 
 }

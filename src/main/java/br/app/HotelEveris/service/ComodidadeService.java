@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.app.HotelEveris.model.Comodidade;
 import br.app.HotelEveris.repository.ComodidadeRepository;
-import br.app.HotelEveris.request.ComodidadeRequest;
+import br.app.HotelEveris.request.ComidadeRequestDoInserir;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.ComodidadeResponse;
 
@@ -19,18 +19,22 @@ public class ComodidadeService {
 
 	private ComodidadeRepository repository;
 
-	public BaseResponse inserir(ComodidadeRequest comodidadeRequest) {
+	public BaseResponse inserir(ComidadeRequestDoInserir request) {
 
 		BaseResponse response = new BaseResponse();
-		Comodidade comodidade = new Comodidade(comodidadeRequest.getNome());
 
+		Comodidade comodidade = new Comodidade(request.getNome());
 		response.statusCode = 400;
+		
 
-		if (comodidadeRequest.getNome().isEmpty()) {
+		if (request.getNome().isEmpty()) {
 			response.message = "A comodidade não pode ser vazia";
+			response.statusCode = 400;
 			return response;
 		}
-
+		
+		
+		
 		repository.save(comodidade);
 
 		response.message = "Comodidade feito";

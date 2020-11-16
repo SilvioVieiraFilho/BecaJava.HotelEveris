@@ -23,22 +23,13 @@ public class Quarto {
 	@JoinColumn(name = "Idtipoquarto")
 	private TipoQuarto tipoquarto;
 
-	public Quarto(Long id) {
-		super();
-		this.id = id;
-	}
-
 	public Quarto() {
 
 	}
 
-	@Transient
-	Optional<Quarto> lista;
-
-	public Quarto(Optional<Quarto> lista) {
-		
-		this.lista = lista;
-
+	public Quarto(Long id) {
+		super();
+		this.id = id;
 	}
 
 	public Quarto(int andar, int nquarto, String situacao, TipoQuarto tipoquarto) {
@@ -87,14 +78,6 @@ public class Quarto {
 
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
-	}
-
-	public Optional<Quarto> getLista() {
-		return lista;
-	}
-
-	public void setLista(Optional<Quarto> lista) {
-		this.lista = lista;
 	}
 
 }

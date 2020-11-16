@@ -1,7 +1,5 @@
 package br.app.HotelEveris.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +16,8 @@ import br.app.HotelEveris.request.ComodidadeRequest;
 import br.app.HotelEveris.request.QuartoRequest;
 import br.app.HotelEveris.request.SituacaoQuartoRequest;
 import br.app.HotelEveris.response.BaseResponse;
-import br.app.HotelEveris.response.QuartoResponse;
 
-import io.swagger.models.Response;
+import br.app.HotelEveris.response.QuartoResponse;
 
 @Service
 public class QuartoService {
@@ -69,17 +66,22 @@ public class QuartoService {
 
 	public QuartoResponse obter(Long id) {
 
-		Optional<Quarto> quarto = repository.findById(id);
+		Optional<Quarto> lista = repository.findById(id);
 
-		Quarto quartoo = new Quarto(quarto);
+		QuartoResponse response = new QuartoResponse();
+		
+		
+		response.setId(lista.get().getId());
+		response.setAndar(lista.get().getNquarto());
+		response.setNquarto(lista.get().getNquarto());
+		response.setSituacao(lista.get().getSituacao());
+		response.setQuartoid(lista.get().getTipoquarto().getId());
+		
 
-		QuartoResponse response = new QuartoResponse(quarto.get().getId(), quarto.get().getAndar(),
-				quarto.get().getNquarto(), quarto.get().getSituacao(), quarto.get().getTipoquarto(), quarto
-
-		);
-
+		
+		
 		response.statusCode = 200;
-		response.message = "Tipo de Quarto obtido com sucesso;";
+		response.message = "Clientes obtidos com sucesso.";
 
 		return response;
 
@@ -90,9 +92,9 @@ public class QuartoService {
 		Optional<Quarto> lista = repository.findBuscarQuartos(tipoquartoid);
 
 		QuartoResponse response = new QuartoResponse(
-				lista.get().getId(),lista.get().getAndar(), lista.get().getNquarto(), lista.get().getSituacao(),
-				lista.get().getTipoquarto()
-			);
+
+				lista.get().getId(), lista.get().getAndar(), lista.get().getNquarto(), lista.get().getSituacao(),
+				lista.get().getTipoquarto());
 
 		response.statusCode = 200;
 		response.message = "Clientes obtidos com sucesso.";
