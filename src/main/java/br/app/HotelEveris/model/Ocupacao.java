@@ -13,15 +13,13 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Ocupacao {
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private Long id;
 
-	@Temporal(TemporalType.DATE)
-	private Date data;
+	private String data;
 
 	private String situacao;
 
@@ -34,11 +32,10 @@ public class Ocupacao {
 	@ManyToOne
 	@JoinColumn(name = "Idcliente")
 	private Cliente cliente;
-	
-	public Ocupacao(){
-		
+
+	public Ocupacao() {
+
 	}
-	
 
 	public int getQtdiarias() {
 		return qtdiarias;
@@ -72,14 +69,6 @@ public class Ocupacao {
 		this.id = id;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
 	public String getSituacao() {
 		return situacao;
 	}
@@ -87,7 +76,13 @@ public class Ocupacao {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	
 
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 
 }

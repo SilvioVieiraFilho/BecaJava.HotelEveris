@@ -5,6 +5,8 @@ public class ComodidadeRequest {
 	private Long id;
 
 	private String nome;
+	
+
 
 	public ComodidadeRequest() {
 

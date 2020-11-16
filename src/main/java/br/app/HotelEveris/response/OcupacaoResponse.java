@@ -5,11 +5,11 @@ import java.util.Date;
 import br.app.HotelEveris.model.Cliente;
 import br.app.HotelEveris.model.Quarto;
 
-public class OcupacaoResponse extends BaseResponse{
+public class OcupacaoResponse extends BaseResponse {
 
 	Long id;
 
-	private Date data;
+	private String data;
 
 	private String situacao;
 
@@ -18,20 +18,20 @@ public class OcupacaoResponse extends BaseResponse{
 	private Quarto quarto;
 	private Cliente cliente;
 
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
 	}
 
 	public String getSituacao() {

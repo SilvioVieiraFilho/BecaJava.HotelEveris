@@ -7,7 +7,6 @@ import br.app.HotelEveris.model.Quarto;
 import br.app.HotelEveris.model.TipoQuarto;
 
 public class QuartoRequest {
-
 	private int andar;
 	private int nquarto;
 	private String situacao;

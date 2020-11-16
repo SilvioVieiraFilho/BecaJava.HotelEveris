@@ -38,13 +38,7 @@ public class TipoQuartoService {
 
 		}
 
-		if (0 < tipodequartoreq.getValor()) {
 
-			response.message = "Valor incopartivel tente novamente";
-			response.statusCode = 400;
-            return response;
-		
-		}
 		
 		TipoQuarto tipoquarto = new TipoQuarto(tipodequartoreq.getDescricao(), tipodequartoreq.getValor());
 

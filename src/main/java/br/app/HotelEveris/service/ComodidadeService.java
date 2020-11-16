@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.app.HotelEveris.model.Comodidade;
 import br.app.HotelEveris.repository.ComodidadeRepository;
 import br.app.HotelEveris.request.ComidadeRequestDoInserir;
+import br.app.HotelEveris.request.ComodidadeRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.ComodidadeResponse;
 

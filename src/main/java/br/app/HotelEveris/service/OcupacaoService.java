@@ -31,6 +31,7 @@ public class OcupacaoService {
 
 	public BaseResponse inserir(OcupacaoRequest request) {
 
+
 		Optional<Cliente> listacliente = crepository.findById(request.getIdcliente());
 		Optional<Quarto> listaquarto = qrepository.findById(request.getIdquarto());
 
@@ -43,78 +44,67 @@ public class OcupacaoService {
 		crepository.findById(request.getIdcliente());
 		crepository.findById(request.getIdquarto());
 
-		ocupa.setData(request.getData());
-		ocupa.setQtdiarias(request.getQtdiarias());
-		ocupa.setSituacao(request.getSituacao());
-
-		if (ocupa.getData() == null) {
-
-			response.message = "insira um data";
-			response.statusCode = 400;
-			return response;
-
-		}
-
-		if (request.getQtdiarias() == 0) {
-
-			response.message = "insira um  um quantidade valida";
-			response.statusCode = 400;
-			return response;
-
-		}
-
-		if (ocupa.getSituacao().isEmpty()) {
-			ocupacao.setSituacao("N");
-		}
-
-		if (!listacliente.isPresent()) {
-
-			response.message = "insira um id de cliente existente";
-			response.statusCode = 400;
-			return response;
-
-		}
 		
-		if(!listaquarto.isPresent() ) {
-			
-			response.message = "insira um id de quarto existente";
-			response.statusCode = 400;
-			return response;
+	
+//		if (request.getQtdiarias() == 0) {
+//
+//			response.message = "insira um  um quantidade valida";
+//			response.statusCode = 400;
+//			return response;
+//
+//		}
+//
+//		
+//
+//		if (!listacliente.isPresent()) {
+//
+//			response.message = "insira um id de cliente existente";
+//			response.statusCode = 400;
+//			return response;
+//
+//		}
+//		
+//		if(!listaquarto.isPresent() ) {
+//			
+//			response.message = "insira um id de quarto existente";
+//			response.statusCode = 400;
+//			return response;
+//		
+//		}
+//
+//		if (request.getIdquarto() == null || request.getIdquarto() == 0) {
+//
+//			response.message = "insira um  id valido";
+//			response.statusCode = 400;
+//			return response;
+//		}
+//
+//		if (request.getIdcliente() == null || request.getIdquarto() == 0) {
+//
+//			response.message = "insira um  id valido";
+//			response.statusCode = 400;
+//			return response;
+//		}
+//		
+//		
+		Cliente cliente = new Cliente();
+		cliente.setId(request.getIdcliente());
 		
-		}
+		Quarto quarto = new Quarto();
+		quarto.setId(request.getIdquarto());
 
-		if (request.getIdquarto() == null || request.getIdquarto() == 0) {
-
-			response.message = "insira um  id valido";
-			response.statusCode = 400;
-			return response;
-		}
-
-		if (request.getIdcliente() == null || request.getIdquarto() == 0) {
-
-			response.message = "insira um  id valido";
-			response.statusCode = 400;
-			return response;
-		}
+		ocupacao.setCliente(cliente);
+		ocupacao.setData(request.getData());
+		ocupacao.setQtdiarias(request.getQtdiarias());
+		ocupacao.setQuarto(quarto);
+		ocupacao.setSituacao("N");
 		
-		
-
-		Cliente obj = new Cliente();
-		obj.setId(request.getIdcliente());
-		ocupa.setCliente(obj);
-
-		Quarto obj2 = new Quarto();
-		obj2.setId(request.getIdquarto());
-		ocupa.setQuarto(obj2);
-
 		repository.save(ocupacao);
-
-		response.message = "Ocupacao inserida com sucesso";
-
+		
+		response.message = "Ocupacao Inserida.";
 		response.statusCode = 201;
-
+		
 		return response;
-
 	}
 
 	public OcupacaoListResponse listar() {

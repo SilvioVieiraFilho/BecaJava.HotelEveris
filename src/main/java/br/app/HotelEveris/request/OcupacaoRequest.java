@@ -1,14 +1,13 @@
 package br.app.HotelEveris.request;
 
-import java.util.Date;
 
-import br.app.HotelEveris.model.Cliente;
-import br.app.HotelEveris.model.Quarto;
+
+
 
 public class OcupacaoRequest {
 
 	private Long idquarto;
-	private Date data;
+	private String data;
 	private int qtdiarias;
 	private Long idcliente;
 	private String situacao;
@@ -42,11 +41,13 @@ public class OcupacaoRequest {
 		this.idquarto = idquarto;
 	}
 
-	public Date getData() {
+	
+
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
