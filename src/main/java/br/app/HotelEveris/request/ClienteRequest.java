@@ -6,6 +6,7 @@ public class ClienteRequest {
 	private String cpf;
 	private String hash;
 
+
 	public String getNome() {
 		return nome;
 	}

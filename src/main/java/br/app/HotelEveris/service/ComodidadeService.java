@@ -49,12 +49,15 @@ public class ComodidadeService {
 		Optional<Comodidade> comodidade = repository.findById(id);
 
 		ComodidadeResponse response = new ComodidadeResponse();
+		BaseResponse r = new BaseResponse(); 
+		
 
-		if (comodidade.get().getId() == 0) {
+		if (!comodidade.isPresent()) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;
 		}
+		
 
 		response.setId(comodidade.get().getId());
 		response.setNome(comodidade.get().getNome());

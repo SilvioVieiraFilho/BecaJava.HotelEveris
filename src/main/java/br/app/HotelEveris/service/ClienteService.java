@@ -20,23 +20,26 @@ public class ClienteService {
 
 	public BaseResponse inserir(ClienteRequest request) {
 		BaseResponse response = new BaseResponse();
-		response.statusCode = 400;
+		Cliente cliente = new Cliente();
 
-		if (request.getNome().isEmpty()) {
+		if (request.getNome() == "") {
 			response.message = "insira um nome  e tente novamente";
 			response.statusCode = 400;
 			return response;
 		}
-		if (request.getCpf().isEmpty()) {
+		if (request.getCpf() == "") {
 			response.message = "insira um cpf e tente novamente";
+			response.statusCode = 400;
 			return response;
+			
 		}
-		if (request.getHash().isEmpty()) {
+		if (request.getHash() == "") {
 			response.message = "insira um hash e tente novamente";
+			response.statusCode = 400;
 			return response;
 		}
 
-		Cliente cliente = new Cliente();
+	
 		cliente.setNome(request.getNome());
 		cliente.setCpf(request.getCpf());
 		cliente.setHash(request.getHash());
@@ -45,20 +48,21 @@ public class ClienteService {
 
 		response.message = "Cliente foi criado com sucesso";
 		response.statusCode = 201;
+		
+		
 
 		return response;
+		
+		
 	}
 
 	public ClienteResponse obter(Long id) {
+		
+		
 		Optional<Cliente> cliente = repository.findById(id);
 
 		ClienteResponse response = new ClienteResponse();
 
-		if (cliente.get().getId() == 0) {
-			response.statusCode = 400;
-			response.message = "Id não encontrado.";
-			return response;
-		}
 
 		if (!cliente.isPresent()) {
 			response.statusCode = 400;
@@ -72,6 +76,7 @@ public class ClienteService {
 
 		response.statusCode = 200;
 		response.message = "Conta obtida com sucesso.";
+		
 		return response;
 	}
 }

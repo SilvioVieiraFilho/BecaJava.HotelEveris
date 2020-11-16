@@ -1,84 +1,116 @@
 package br.app.HotelEveris.Service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import br.app.HotelEveris.request.ClienteRequest;
+import br.app.HotelEveris.response.BaseResponse;
+import br.app.HotelEveris.response.ClienteResponse;
+import br.app.HotelEveris.response.ComodidadeResponse;
+import br.app.HotelEveris.service.ClienteService;
 
+@SpringBootTest
 public class ClienteTest {
 
-	protected MockMvc mvc;
-	
 	@Autowired
-	WebApplicationContext webApplicationContext;
-
-	protected void setUp() {
-		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-	}
-
-	protected String mapToJson(Object obj) throws JsonProcessingException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		return objectMapper.writeValueAsString(obj);
-	}
-
-	protected <T> T mapFromJson(String json, Class<T> clazz)
-			throws JsonParseException, JsonMappingException, IOException {
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		return objectMapper.readValue(json, clazz);
-	}
-	
-	
+	private ClienteService service;
 
 	@Test
-	public void createProduct() throws Exception {
-		String uri = "/cliente";
+	void inserirClienteinserir() {
+
 		ClienteRequest request = new ClienteRequest();
-		request.setCpf("0000000");
-		request.setHash("1234567890");
-		request.setNome("Nome do cliente");
 
-		String inputJson = this.mapToJson(request);
-		MvcResult mvcResult = mvc.perform(
-				MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
-				.andReturn();
+		request.setCpf("00000");
+		request.setNome("silviin");
+		request.setHash("2828");
+		
 
-		int status = mvcResult.getResponse().getStatus();
-		assertThat(status).isEqualTo(201);
-		// assertEquals(201, status);
-		String content = mvcResult.getResponse().getContentAsString();
-		assertThat(content).isEqualTo("Product is created successfully");
-		// assertEquals(content, "Product is created successfully");
+		BaseResponse response = service.inserir(request);
+
+		Assertions.assertEquals(201, response.statusCode);
+		Assertions.assertEquals("Cliente foi criado com sucesso", response.message);
+
+	}
+
+
+	@Test
+	void inserirClienteNomeinserir() {
+
+		ClienteRequest request = new ClienteRequest();
+
+		request.setCpf("00000");
+		request.setNome("");
+		request.setHash("sdsdsdsds");
+
+		BaseResponse response = service.inserir(request);
+
+		Assertions.assertEquals(400, response.statusCode);
+		Assertions.assertEquals("insira um nome  e tente novamente", response.message);
+
 	}
 	
+	@Test
+	void inserirClienteCpfnaoinserir() {
+
+		ClienteRequest request = new ClienteRequest();
+
+		request.setCpf("");
+		request.setNome("silvio");
+		request.setHash("sdsdsdsds");
+
+		BaseResponse response = service.inserir(request);
+
+		Assertions.assertEquals(400, response.statusCode);
+		Assertions.assertEquals("insira um cpf e tente novamente", response.message);
+
+	}
 	
+    @Test
+	void inserirClienteHashnaoinserir() {
+
+		ClienteRequest request = new ClienteRequest();
+
+		request.setCpf("000.000.000.00");
+		request.setNome("silvio");
+		request.setHash("");
+
+		BaseResponse response = service.inserir(request);
+
+		Assertions.assertEquals(400, response.statusCode);
+		Assertions.assertEquals("insira um hash e tente novamente", response.message);
+
+	}
+    
+    @Test
+	void obterClienteporid() {
+	ClienteResponse response = new ClienteResponse();
 	
+		 service.obter(1L);
+
+		Assertions.assertEquals(200, response.statusCode);
+		Assertions.assertEquals("Conta obtida com sucesso.", response.message);
+
+	}
+    
+    @Test
+   	void obterClienteNaoIdentificadoporid() {
+    	
+   	ClienteResponse response = new ClienteResponse();
+   	
+   		 service.obter(50L);
+
+   		Assertions.assertEquals(400, response.statusCode);
+   		Assertions.assertEquals("Id inexistente tente novamente", response.message);
+
+   	}
+   	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+    
+    
+    
+    
 	
 	
 	

@@ -4,9 +4,6 @@ public class TipoQuartoRequest {
 
 	private String descricao;
 	private double valor;
-	
-	
-
 
 	public String getDescricao() {
 		return descricao;
@@ -21,6 +18,7 @@ public class TipoQuartoRequest {
 	}
 
 	public void setValor(double valor) {
+
 		this.valor = valor;
 	}
 

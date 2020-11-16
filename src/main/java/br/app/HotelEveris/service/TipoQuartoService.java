@@ -25,15 +25,16 @@ public class TipoQuartoService {
 		
 		if (tipodequartoreq.getDescricao() == "") {
 
-			response.message = "Descricao vazia tente novamente  ";
+			response.message = "Descricao vazia tente novamente";
 			response.statusCode = 400;
-
+            return response;
 		}
 
 		if (tipodequartoreq.getValor() == 0) {
 
 			response.message = "Valor incopartivel tente novamente";
 			response.statusCode = 400;
+			return response;
 
 		}
 
@@ -41,16 +42,17 @@ public class TipoQuartoService {
 
 			response.message = "Valor incopartivel tente novamente";
 			response.statusCode = 400;
-
+            return response;
+		
 		}
 		
 		TipoQuarto tipoquarto = new TipoQuarto(tipodequartoreq.getDescricao(), tipodequartoreq.getValor());
 
 
 		repository.save(tipoquarto);
-
-		response.message = "tipo de quarto inserido";
 		response.statusCode = 201;
+
+		response.message = "tipo de quarto inserido.";
 
 		return response;
 
@@ -62,9 +64,12 @@ public class TipoQuartoService {
 
 		TipoQuartoResponse response = new TipoQuartoResponse();
 
-		if (tipoquarto.get().getId() == 0) {
+	
+		
+		if(!tipoquarto.isPresent()) {
+			
 			response.statusCode = 400;
-			response.message = "Id não encontrado tente novamente.";
+			response.message = "Id não encontrado tente novamente";
 			return response;
 		}
 		
@@ -73,7 +78,7 @@ public class TipoQuartoService {
 		response.setDescricao(tipoquarto.get().getDescricao());
 		response.setValor(tipoquarto.get().getValor());
 
-		response.message = "Lista Tipo quarto efetuada com sucesse";
+		response.message = "Lista Tipo quarto efetuada com sucesso";
 		response.statusCode = 200;
 
 		return response;
@@ -89,6 +94,7 @@ public class TipoQuartoService {
 		TipoQuartoListResponse response = new TipoQuartoListResponse();
   
 		response.setTipoquarto(listando);
+		
 		response.statusCode = 200;
 		response.message = "Serviços obtidos com sucesso.";
 
