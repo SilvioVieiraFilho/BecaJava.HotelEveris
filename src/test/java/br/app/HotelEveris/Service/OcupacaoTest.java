@@ -1,8 +1,5 @@
 package br.app.HotelEveris.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import br.app.HotelEveris.request.OcupacaoRequest;
 import br.app.HotelEveris.response.BaseResponse;
-import br.app.HotelEveris.response.ComodidadeResponse;
+import br.app.HotelEveris.response.OcupacaoListResponse;
 import br.app.HotelEveris.service.OcupacaoService;
 
 @SpringBootTest
@@ -22,17 +19,21 @@ public class OcupacaoTest {
 	void inserirOcupacaoinserir() {
 
 		OcupacaoRequest request = new OcupacaoRequest();
+		
+	
+
 
 		request.setData("18-18-2019");
-		request.setIdcliente(1l);
-		request.setIdquarto(1l);
 		request.setQtdiarias(2);
+		request.setIdquarto(2l);;
+		request.setIdcliente(1l);
+
 		request.setSituacao("N");
 
 		BaseResponse response = service.inserir(request);
 
 		Assertions.assertEquals(201, response.statusCode);
-		Assertions.assertEquals("Ocupacao inserida com sucesso", response.message);
+		Assertions.assertEquals("Ocupacao Inserida.", response.message);
 
 	}
 
@@ -50,18 +51,37 @@ public class OcupacaoTest {
 		BaseResponse response = service.inserir(request);
 
 		Assertions.assertEquals(400, response.statusCode);
-		Assertions.assertEquals("insira um data", response.message);
+		Assertions.assertEquals("insira uma data", response.message);
+
+	}
+
+	
+	@Test
+	void inserirOcupacaoinserirerrop1() {
+
+		OcupacaoRequest request = new OcupacaoRequest();
+
+		request.setData("10/20/20");
+		request.setIdcliente(60l);
+		request.setIdquarto(1l);
+		request.setQtdiarias(2);
+		request.setSituacao("N");
+
+		BaseResponse response = service.inserir(request);
+
+		Assertions.assertEquals(400, response.statusCode);
+		Assertions.assertEquals("insira um id de cliente existente", response.message);
 
 	}
 
 	@Test
-	void inserirOcupacaoinserirerro1() {
+	void inserirOcupacaoinserirerrop2() {
 
 		OcupacaoRequest request = new OcupacaoRequest();
 
-		request.setData("12-20-2018");
+		request.setData("10/20/20");
 		request.setIdcliente(1l);
-		request.setIdquarto(0L);
+		request.setIdquarto(40l);
 		request.setQtdiarias(2);
 		request.setSituacao("N");
 
@@ -73,18 +93,19 @@ public class OcupacaoTest {
 	}
 	
 	
-
-
 	@Test
-	void naoobterComodidadeporid() {
-
-		ComodidadeResponse response = new ComodidadeResponse();
-
-		service.listar();
-
+	void obterlistageral(){
+         
+		OcupacaoListResponse response = new OcupacaoListResponse();
+		
+		  response.setOcupacao(response.getOcupacao());
+		
+		
 		Assertions.assertEquals(200, response.statusCode);
 		Assertions.assertEquals("Serviços obtidos com sucesso.", response.message);
+		
+		
+}
 
-	}
-
+	
 }

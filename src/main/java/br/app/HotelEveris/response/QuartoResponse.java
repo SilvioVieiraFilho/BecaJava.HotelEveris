@@ -14,9 +14,8 @@ public class QuartoResponse extends BaseResponse {
 	
 	private String situacao;
 	private TipoQuarto tipoquarto;
-	Optional<Quarto> lista;
-	Optional<Quarto> listaa;
-	private Quarto quarto;
+
+
     private long  quartoid;
 	
 	
@@ -27,9 +26,6 @@ public QuartoResponse() {
 		}
 	
 
-	public void setLista(Optional<Quarto> lista) {
-		this.lista = lista;
-	}
 
 	public Long getId() {
 		return id;
@@ -44,7 +40,7 @@ public QuartoResponse() {
 		this.nquarto = nquarto;
 		this.situacao = situacao;
 		this.tipoquarto = tipoquarto;
-		this.listaa = lista;
+		
 	}
 	
 	
@@ -108,24 +104,6 @@ public QuartoResponse() {
 	}
 
 
-	public Quarto getQuarto() {
-		return quarto;
-	}
-
-
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
-	}
-
-
-	public Optional<Quarto> getListaa() {
-		return listaa;
-	}
-
-
-	public void setListaa(Optional<Quarto> listaa) {
-		this.listaa = listaa;
-	}
 
 
 	public long getQuartoid() {
@@ -138,9 +116,6 @@ public QuartoResponse() {
 	}
 
 
-	public Optional<Quarto> getLista() {
-		return lista;
-	}
 	
 	
 

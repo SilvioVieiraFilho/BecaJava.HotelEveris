@@ -10,7 +10,7 @@ public class QuartoRequest {
 	private int andar;
 	private int nquarto;
 	private String situacao;
-	private TipoQuarto tipoquarto;
+	private Long idTipoquarto;
 
 	private List<ComodidadeRequest> Comodidade;
 
@@ -26,13 +26,7 @@ public class QuartoRequest {
 		return Comodidade;
 	}
 
-	public TipoQuarto getTipoquarto() {
-		return tipoquarto;
-	}
-
-	public void setTipoquarto(TipoQuarto tipoquarto) {
-		this.tipoquarto = tipoquarto;
-	}
+	
 
 	public int getAndar() {
 		return andar;
@@ -46,6 +40,14 @@ public class QuartoRequest {
 		return nquarto;
 	}
 
+	public Long getIdTipoquarto() {
+		return idTipoquarto;
+	}
+
+	public void setIdTipoquarto(Long idTipoquarto) {
+		this.idTipoquarto = idTipoquarto;
+	}
+
 	public String getSituacao() {
 		return situacao;
 	}
@@ -53,5 +55,10 @@ public class QuartoRequest {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
+
+
+	
+	
+	
 
 }

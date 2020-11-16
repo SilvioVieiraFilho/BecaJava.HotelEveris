@@ -18,7 +18,7 @@ import br.app.HotelEveris.response.BaseResponse;
 
 
 @Service
-public class FaturaService {
+public class FaturaService  {
 	
 	@Autowired
 	private OcupacaoRepository ocupacaoRepository;
@@ -34,8 +34,8 @@ public class FaturaService {
 	
 	private String hashContaHotel = "c7959779-d787-40ac-945c-1b0c4ad2b666";
 
-	public void inserir() {	
-		
+	public  void inserir(){	
+	
 		
 		RestTemplate restTemplate = new RestTemplate();
 		String uri = "http://localhost:8081/operacao/transferencia";
@@ -63,6 +63,7 @@ public class FaturaService {
 
 	
 	}
+		
 		
 	}
 

@@ -28,7 +28,7 @@ public class ComodidadeService {
 		response.statusCode = 400;
 		
 
-		if (request.getNome().isEmpty()) {
+		if (request.getNome() == "") {
 			response.message = "A comodidade não pode ser vazia";
 			response.statusCode = 400;
 			return response;

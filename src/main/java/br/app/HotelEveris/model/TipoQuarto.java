@@ -14,8 +14,10 @@ public class TipoQuarto {
 	
 	
 
-	TipoQuarto() {
 
+
+	public TipoQuarto() {
+		super();
 	}
 
 	public TipoQuarto(Long id) {

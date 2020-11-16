@@ -1,5 +1,7 @@
 package br.app.HotelEveris.Service;
 
+import java.util.Random;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class ClienteTest {
 	@Autowired
 	private ClienteService service;
 
+	
+	
 	@Test
 	void inserirClienteinserir() {
 
@@ -24,7 +28,7 @@ public class ClienteTest {
 
 		request.setCpf("00000");
 		request.setNome("silviin");
-		request.setHash("2828");
+		request.setHash("sodksdsd");
 		
 
 		BaseResponse response = service.inserir(request);
@@ -33,6 +37,8 @@ public class ClienteTest {
 		Assertions.assertEquals("Cliente foi criado com sucesso", response.message);
 
 	}
+	
+	
 
 
 	@Test
@@ -105,6 +111,9 @@ public class ClienteTest {
    		Assertions.assertEquals("Id inexistente tente novamente", response.message);
 
    	}
+    
+    
+    
    	
 	
     

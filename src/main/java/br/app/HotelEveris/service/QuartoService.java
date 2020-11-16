@@ -1,5 +1,6 @@
 package br.app.HotelEveris.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import br.app.HotelEveris.request.ComodidadeRequest;
 import br.app.HotelEveris.request.QuartoRequest;
 import br.app.HotelEveris.request.SituacaoQuartoRequest;
 import br.app.HotelEveris.response.BaseResponse;
-
+import br.app.HotelEveris.response.QuartoListResponse;
 import br.app.HotelEveris.response.QuartoResponse;
 
 @Service
@@ -35,26 +36,42 @@ public class QuartoService {
 
 		BaseResponse response = new BaseResponse();
 
-		TipoQuarto tipoquarto = new TipoQuarto(request.getTipoquarto().getId());
+		Quarto quarto = new Quarto();
 
-		Quarto quarto = new Quarto(request.getAndar(), request.getNquarto(), request.getSituacao(), tipoquarto);
+		quarto.setAndar(request.getAndar());
+		quarto.setNquarto(request.getNquarto());
+		quarto.setSituacao(request.getSituacao());
+
+		TipoQuarto o = new TipoQuarto();
+
+		o.setId(request.getIdTipoquarto());
+		quarto.setTipoquarto(o);
 
 		repository.save(quarto);
 
 		response.statusCode = 201;
 		response.message = "Quarto obtido";
 
-//		Optional<Quarto> getquarto = repository.findbyQuarto(request.getNquarto());
+		Optional<Quarto> getquarto = repository.findBynquarto(request.getNquarto());
 
-		Long idQuarto = repository.findBynquarto(request.getNquarto()).get().getId();
+		Long quartoId = getquarto.get().getId();
+
+//		Long idQuarto = repository.findBynquarto(request.getNquarto()).get().getId();
 
 		for (ComodidadeRequest item : request.getComodidade()) {
 
-			QuartoComodidade quartocom = new QuartoComodidade(
+			Quarto quart = new Quarto();
+			quart.setId(quartoId);
 
-					new Quarto(idQuarto), new Comodidade(item.getId()));
+			Comodidade c = new Comodidade();
+			c.setId(item.getId());
 
-			_repository.save(quartocom);
+			QuartoComodidade quartoComodidade = new QuartoComodidade();
+
+			quartoComodidade.setComodidade(c);
+			quartoComodidade.setQuarto(quart);
+
+			_repository.save(quartoComodidade);
 
 		}
 
@@ -69,37 +86,34 @@ public class QuartoService {
 		Optional<Quarto> lista = repository.findById(id);
 
 		QuartoResponse response = new QuartoResponse();
-		
-		
+
 		response.setId(lista.get().getId());
 		response.setAndar(lista.get().getNquarto());
 		response.setNquarto(lista.get().getNquarto());
 		response.setSituacao(lista.get().getSituacao());
 		response.setQuartoid(lista.get().getTipoquarto().getId());
-		
 
-		
-		
 		response.statusCode = 200;
-		response.message = "Clientes obtidos com sucesso.";
+		response.message = "Quarto obtidos com sucesso";
 
 		return response;
 
 	}
 
-	public QuartoResponse obterdenovo(Long tipoquartoid) {
+	public QuartoListResponse obterdenovo(Long id) {
 
-		Optional<Quarto> lista = repository.findBuscarQuartos(tipoquartoid);
+		List<Quarto> lista = repository.findByTipoQuartos(id);
 
-		QuartoResponse response = new QuartoResponse(
+      
+		
+		 QuartoListResponse response = new  QuartoListResponse();
+		 response.setQuarto(lista);
+		 
+		 response.message = "Lista Obtida";
+		 response.statusCode = 200;
 
-				lista.get().getId(), lista.get().getAndar(), lista.get().getNquarto(), lista.get().getSituacao(),
-				lista.get().getTipoquarto());
-
-		response.statusCode = 200;
-		response.message = "Clientes obtidos com sucesso.";
-
-		return response;
+	return response;
+		
 
 	}
 
@@ -109,22 +123,26 @@ public class QuartoService {
 
 		BaseResponse response = new BaseResponse();
 
-		if (request.getSituacao().isEmpty()) {
+		if (request.getSituacao() == "") {
 			response.statusCode = 400;
 			response.message = "Situação do quarto não pode ser vazia";
 			return response;
 
-		} else if (quarto.isEmpty() || id <= 0) {
+		} 
+		
+		
+		
+		if( !quarto.isPresent()) {
 			response.statusCode = 400;
-			response.message = "Id do quarto não pode ser zero ou vazio";
+			response.message = "id nao encontrado tente novamente";
 			return response;
-		}
-
+			}
+		
 		quarto.get().setSituacao(request.getSituacao());
 
 		repository.save(quarto.get());
 
-		response.message = "Situação Atulizada Com sucesso ";
+		response.message = "Situação Atulizada Com sucesso";
 		response.statusCode = 200;
 
 		return response;

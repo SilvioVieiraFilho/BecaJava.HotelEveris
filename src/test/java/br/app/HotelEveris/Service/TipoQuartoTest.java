@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import br.app.HotelEveris.request.TipoQuartoRequest;
 import br.app.HotelEveris.response.BaseResponse;
-import br.app.HotelEveris.response.ComodidadeResponse;
+import br.app.HotelEveris.response.OcupacaoListResponse;
 import br.app.HotelEveris.response.TipoQuartoListResponse;
 import br.app.HotelEveris.response.TipoQuartoResponse;
 import br.app.HotelEveris.service.TipoQuartoService;
@@ -45,19 +45,6 @@ public class TipoQuartoTest {
 
 	}
 
-	@Test
-	void inserirTipoquartomenorquezero() {
-
-		TipoQuartoRequest request = new TipoQuartoRequest();
-		request.setValor(-1);
-		request.setDescricao("Luxo");
-
-		BaseResponse response = service.inserir(request);
-
-		Assertions.assertEquals(400, response.statusCode);
-		Assertions.assertEquals("Valor incopartivel tente novamente", response.message);
-
-	}
 	
 	@Test
 	void inserirTipoQuartoDescricaovazia() {
@@ -69,7 +56,7 @@ public class TipoQuartoTest {
 		BaseResponse response = service.inserir(request);
 
 		Assertions.assertEquals(400, response.statusCode);
-		Assertions.assertEquals("Descricao vazia tente novamente ", response.message);
+		Assertions.assertEquals("Descricao vazia tente novamente", response.message);
 
 	}
 	
@@ -78,10 +65,13 @@ public class TipoQuartoTest {
 	void obterTipoQuarto () {
          
 		TipoQuartoResponse response = new  TipoQuartoResponse();
-		 service.obter(1L);
+		 service.obter(2L);
 
 		Assertions.assertEquals(200, response.statusCode);
-		Assertions.assertEquals("Lista Tipo quarto efetuada com sucesso", response.message);
+		Assertions.assertEquals("Quarto obtidos com sucesso", response.message);
+		
+		
+		
 	}
 	
 
@@ -114,6 +104,20 @@ public class TipoQuartoTest {
 		
 		
 }
+	
+	@Test
+    public void pegaLista() {
+    OcupacaoListResponse obj = new OcupacaoListResponse();
+    obj.setOcupacao(obj.getOcupacao());
+
+    BaseResponse response = service.listar();
+    
+    
+    
+    Assertions.assertEquals(200,response.statusCode);
+    
+    
+    }
 	
 	
 	

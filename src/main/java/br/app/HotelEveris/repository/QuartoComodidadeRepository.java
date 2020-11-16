@@ -9,19 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import br.app.HotelEveris.model.QuartoComodidade;
 
+@Repository
+public interface QuartoComodidadeRepository extends JpaRepository<QuartoComodidade, Long> {
 
-	
-	
-	@Repository
-	public interface QuartoComodidadeRepository extends JpaRepository<QuartoComodidade, Long>{
-
-		   @Query(value = " SP_CONSULTATESTES  : Idquarto ",nativeQuery = true )
-		   Optional<QuartoComodidade> findBuscarQuartos(@Param("Idquarto") Long tipoquartoid);
-	
-	}
-
-	
-	
-	
-
-
+}
