@@ -98,6 +98,8 @@ public class OcupacaoTest {
          
 		OcupacaoListResponse response = new OcupacaoListResponse();
 		
+         
+		
 		  response.setOcupacao(response.getOcupacao());
 		
 		

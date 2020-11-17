@@ -104,16 +104,13 @@ public class QuartoService {
 
 		List<Quarto> lista = repository.findByTipoQuartos(id);
 
-      
-		
-		 QuartoListResponse response = new  QuartoListResponse();
-		 response.setQuarto(lista);
-		 
-		 response.message = "Lista Obtida";
-		 response.statusCode = 200;
+		QuartoListResponse response = new QuartoListResponse();
+		response.setQuarto(lista);
 
-	return response;
-		
+		response.message = "Lista Obtida";
+		response.statusCode = 200;
+
+		return response;
 
 	}
 
@@ -128,16 +125,14 @@ public class QuartoService {
 			response.message = "Situação do quarto não pode ser vazia";
 			return response;
 
-		} 
-		
-		
-		
-		if( !quarto.isPresent()) {
+		}
+
+		if (!quarto.isPresent()) {
 			response.statusCode = 400;
 			response.message = "id nao encontrado tente novamente";
 			return response;
-			}
-		
+		}
+
 		quarto.get().setSituacao(request.getSituacao());
 
 		repository.save(quarto.get());

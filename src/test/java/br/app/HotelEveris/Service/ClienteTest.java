@@ -28,7 +28,7 @@ public class ClienteTest {
 
 		request.setCpf("00000");
 		request.setNome("silviin");
-		request.setHash("sodksdsd");
+		request.setHash("TESTANDOMAISUMAVEZ");
 		
 
 		BaseResponse response = service.inserir(request);

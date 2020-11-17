@@ -96,6 +96,9 @@ public class TipoQuartoTest {
          
 		TipoQuartoListResponse response = new TipoQuartoListResponse();
 		
+		
+		
+		
 		  response.setTipoquarto(response.getTipoquarto());
 		
 		
