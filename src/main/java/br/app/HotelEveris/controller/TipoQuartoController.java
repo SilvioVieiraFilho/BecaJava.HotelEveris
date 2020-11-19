@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.app.HotelEveris.request.ComodidadeRequest;
 import br.app.HotelEveris.request.TipoQuartoRequest;
 import br.app.HotelEveris.response.BaseResponse;
-import br.app.HotelEveris.service.TipoQuartoService;
+import br.app.HotelEveris.service.imp.TipoQuartoServiceImp;
 
 @RestController
 @RequestMapping("/tipoquarto")
@@ -21,7 +21,7 @@ public class TipoQuartoController  extends BaseController{
 	
 
 		@Autowired
-		TipoQuartoService _service;
+		TipoQuartoServiceImp _service;
 
 
 		@PostMapping

@@ -1,4 +1,4 @@
-package br.app.HotelEveris.service;
+package br.app.HotelEveris.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +12,10 @@ import br.app.HotelEveris.request.TipoQuartoRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.TipoQuartoListResponse;
 import br.app.HotelEveris.response.TipoQuartoResponse;
+import br.app.HotelEveris.serivce.TipoQuartoService;
 
 @Service
-public class TipoQuartoService {
+public class TipoQuartoServiceImp implements TipoQuartoService {
 
 	@Autowired
 	private TipoQuartoRepository repository;

@@ -8,13 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.app.HotelEveris.request.ComidadeRequestDoInserir;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.ComodidadeResponse;
-import br.app.HotelEveris.service.ComodidadeService;
+import br.app.HotelEveris.service.imp.ComodidadeServiceImp;
 
 @SpringBootTest
 public class ComodidadeTest {
 
 	@Autowired
-	private ComodidadeService service;
+	private ComodidadeServiceImp service;
 
 	@Test
 	void inserir() {

@@ -6,20 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import br.app.HotelEveris.response.BaseResponse;
-import br.app.HotelEveris.service.FaturaService;
+import br.app.HotelEveris.service.imp.FaturaServiceImp;
 
 @SpringBootTest
 public class FaturaTest {
 
 	@Autowired
-	private FaturaService service;
+	private FaturaServiceImp service;
 
 	@Test
 	public void Transferencia() {
 		BaseResponse response = service.inserir();
 
 		Assertions.assertEquals(200, response.statusCode);
-		Assertions.assertEquals("Transferencia completa", response.message);
+		Assertions.assertEquals("Tranferencia Da Fatura Realizada com sucesso", response.message);
 
 	}
 

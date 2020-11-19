@@ -1,6 +1,7 @@
 package br.app.HotelEveris.Service;
 
 import java.util.Random;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,15 +12,15 @@ import br.app.HotelEveris.request.ClienteRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.ClienteResponse;
 import br.app.HotelEveris.response.ComodidadeResponse;
-import br.app.HotelEveris.service.ClienteService;
+import br.app.HotelEveris.service.imp.ClienteServiceImp;
 
 @SpringBootTest
 public class ClienteTest {
 
 	@Autowired
-	private ClienteService service;
+	private ClienteServiceImp service;
 
-	
+	UUID uuid = UUID.randomUUID();
 	
 	@Test
 	void inserirClienteinserir() {
@@ -28,7 +29,7 @@ public class ClienteTest {
 
 		request.setCpf("00000");
 		request.setNome("silviin");
-		request.setHash("TESTANDOMAISUMAVEZ");
+		request.setHash(uuid.toString());
 		
 
 		BaseResponse response = service.inserir(request);

@@ -1,4 +1,4 @@
-package br.app.HotelEveris.service;
+package br.app.HotelEveris.service.imp;
 
 
 
@@ -15,10 +15,11 @@ import br.app.HotelEveris.repository.QuartoRepository;
 import br.app.HotelEveris.repository.TipoQuartoRepository;
 import br.app.HotelEveris.request.TransferenciaRequest;
 import br.app.HotelEveris.response.BaseResponse;
+import br.app.HotelEveris.serivce.FaturaService;
 
 
 @Service
-public class FaturaService  {
+public class FaturaServiceImp implements FaturaService  {
 	
 	@Autowired
 	private OcupacaoRepository ocupacaoRepository;

@@ -1,4 +1,4 @@
-package br.app.HotelEveris.service;
+package br.app.HotelEveris.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +19,10 @@ import br.app.HotelEveris.request.SituacaoQuartoRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.QuartoListResponse;
 import br.app.HotelEveris.response.QuartoResponse;
+import br.app.HotelEveris.serivce.QuartoService;
 
 @Service
-public class QuartoService {
+public class QuartoServiceImp implements QuartoService {
 
 	@Autowired
 	private ComodidadeRepository repocomo;
@@ -32,7 +33,7 @@ public class QuartoService {
 	@Autowired
 	private QuartoComodidadeRepository _repository;
 
-	public BaseResponse inserir(QuartoRequest request) {
+	public BaseResponse inserir(QuartoRequest request){
 
 		BaseResponse response = new BaseResponse();
 
@@ -40,7 +41,7 @@ public class QuartoService {
 
 		quarto.setAndar(request.getAndar());
 		quarto.setNquarto(request.getNquarto());
-		quarto.setSituacao(request.getSituacao());
+		quarto.setSituacao("A");
 
 		TipoQuarto o = new TipoQuarto();
 

@@ -1,4 +1,4 @@
-package br.app.HotelEveris.service;
+package br.app.HotelEveris.service.imp;
 
 import java.util.Optional;
 
@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import br.app.HotelEveris.model.Comodidade;
 import br.app.HotelEveris.repository.ComodidadeRepository;
 import br.app.HotelEveris.request.ComidadeRequestDoInserir;
-import br.app.HotelEveris.request.ComodidadeRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.ComodidadeResponse;
+import br.app.HotelEveris.serivce.ComodidadeService;
 
 @Service
 
-public class ComodidadeService {
+public class ComodidadeServiceImp implements ComodidadeService {
 
 	@Autowired
 
@@ -26,16 +26,13 @@ public class ComodidadeService {
 
 		Comodidade comodidade = new Comodidade(request.getNome());
 		response.statusCode = 400;
-		
 
 		if (request.getNome() == "") {
 			response.message = "A comodidade não pode ser vazia";
 			response.statusCode = 400;
 			return response;
 		}
-		
-		
-		
+
 		repository.save(comodidade);
 
 		response.message = "Comodidade feito";
@@ -50,15 +47,13 @@ public class ComodidadeService {
 		Optional<Comodidade> comodidade = repository.findById(id);
 
 		ComodidadeResponse response = new ComodidadeResponse();
-		BaseResponse r = new BaseResponse(); 
-		
+		BaseResponse r = new BaseResponse();
 
 		if (!comodidade.isPresent()) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;
 		}
-		
 
 		response.setId(comodidade.get().getId());
 		response.setNome(comodidade.get().getNome());

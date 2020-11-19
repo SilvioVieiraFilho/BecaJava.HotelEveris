@@ -1,4 +1,4 @@
-package br.app.HotelEveris.service;
+package br.app.HotelEveris.service.imp;
 
 import java.util.Optional;
 
@@ -10,13 +10,13 @@ import br.app.HotelEveris.repository.ClienteRepository;
 import br.app.HotelEveris.request.ClienteRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.ClienteResponse;
+import br.app.HotelEveris.serivce.ClienteService;
 
 @Service
-public class ClienteService {
+public class ClienteServiceImp implements ClienteService{
 
 	@Autowired
 	ClienteRepository repository;
-
 
 	public BaseResponse inserir(ClienteRequest request) {
 		BaseResponse response = new BaseResponse();
@@ -31,7 +31,7 @@ public class ClienteService {
 			response.message = "insira um cpf e tente novamente";
 			response.statusCode = 400;
 			return response;
-			
+
 		}
 		if (request.getHash() == "") {
 			response.message = "insira um hash e tente novamente";
@@ -39,7 +39,6 @@ public class ClienteService {
 			return response;
 		}
 
-	
 		cliente.setNome(request.getNome());
 		cliente.setCpf(request.getCpf());
 		cliente.setHash(request.getHash());
@@ -48,21 +47,18 @@ public class ClienteService {
 
 		response.message = "Cliente foi criado com sucesso";
 		response.statusCode = 201;
-		
-		
 
 		return response;
-		
-		
+
 	}
+	
+	
 
 	public ClienteResponse obter(Long id) {
-		
-		
+
 		Optional<Cliente> cliente = repository.findById(id);
 
 		ClienteResponse response = new ClienteResponse();
-
 
 		if (!cliente.isPresent()) {
 			response.statusCode = 400;
@@ -76,7 +72,7 @@ public class ClienteService {
 
 		response.statusCode = 200;
 		response.message = "Conta obtida com sucesso.";
-		
+
 		return response;
 	}
 }

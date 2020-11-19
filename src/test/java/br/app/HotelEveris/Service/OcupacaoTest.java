@@ -8,12 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.app.HotelEveris.request.OcupacaoRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.OcupacaoListResponse;
-import br.app.HotelEveris.service.OcupacaoService;
+import br.app.HotelEveris.service.imp.OcupacaoServiceImp;
 
 @SpringBootTest
 public class OcupacaoTest {
 	@Autowired
-	private OcupacaoService service;
+	private OcupacaoServiceImp service;
 
 	@Test
 	void inserirOcupacaoinserir() {

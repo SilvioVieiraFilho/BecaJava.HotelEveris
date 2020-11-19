@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.app.HotelEveris.request.QuartoRequest;
 import br.app.HotelEveris.request.SituacaoQuartoRequest;
 import br.app.HotelEveris.response.BaseResponse;
-import br.app.HotelEveris.service.QuartoService;
+import br.app.HotelEveris.service.imp.QuartoServiceImp;
 
 @RestController
 @RequestMapping("/quartos")
@@ -22,7 +22,7 @@ import br.app.HotelEveris.service.QuartoService;
 public class QuartoController extends BaseController {
 
 	@Autowired
-	QuartoService service;
+	QuartoServiceImp service;
 
 	// POST - CRIAR UM CLIENTE
 	@PostMapping
@@ -35,8 +35,8 @@ public class QuartoController extends BaseController {
 		}
 	}
 
-	@GetMapping(path = "/{id}/obtermoreonce")
-	public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
+	@GetMapping(path = "/{id}/obterquarto")
+	public ResponseEntity<BaseResponse> obterquarto(@PathVariable Long id) {
 		try {
 			BaseResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);
@@ -46,8 +46,8 @@ public class QuartoController extends BaseController {
 
 	}
 
-	@GetMapping(path = "/{id}/obterdenovo")
-	public ResponseEntity<BaseResponse> obterdenovo(@PathVariable Long id) {
+	@GetMapping(path = "/{id}/oberidtipoquarto")
+	public ResponseEntity<BaseResponse> obtertipoquarto(@PathVariable Long id) {
 		try {
 			BaseResponse response = service.obterdenovo(id);
 			return ResponseEntity.status(response.statusCode).body(response);

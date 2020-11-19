@@ -1,4 +1,4 @@
-package br.app.HotelEveris.service;
+package br.app.HotelEveris.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +15,10 @@ import br.app.HotelEveris.repository.QuartoRepository;
 import br.app.HotelEveris.request.OcupacaoRequest;
 import br.app.HotelEveris.response.BaseResponse;
 import br.app.HotelEveris.response.OcupacaoListResponse;
+import br.app.HotelEveris.serivce.OcupacaoService;
 
 @Service
-public class OcupacaoService {
+public class OcupacaoServiceImp implements OcupacaoService {
 
 	@Autowired
 	private OcupacaoRepository repository;
